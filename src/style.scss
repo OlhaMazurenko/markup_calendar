@@ -4,10 +4,12 @@
   box-sizing: border-box;
 }
 
+.body {
+  font-family: Arial;
+}
+
 .calendar {
-  cursor: pointer;
   grid-auto-rows: 100px;
-  height: 100vh;
   display: grid;
   grid-template:repeat(5, $sizing)/repeat(7, $sizing);
   grid-gap: $datesGap;
@@ -20,23 +22,24 @@
     justify-content: center;
     transition: 0.5s;
     font-size: 30px;
+    cursor: pointer;
   }
 }
 
-@for $i from 1 through 31 {
+@for $i from 28 through 31 {
   @for $j from 1 through $i {
     div.calendar-#{$i} div:nth-child(#{$j}) {
       border: $calendarBorders;
     }
-    div.calendar-#{$i} {
+    .calendar-#{$i} {
     background-color: $backgroundColor;
-      div:nth-child(#{$j}):hover {
-          transform: $calendarTransform;
+      :nth-child(#{$j}):hover {
+          transform: $transformOnHover;
           background-color: pink;
       }
     }
     .calendar-#{$i}:hover {
-        transform: $calendarTransform; 
+        transform: $transformOnHover; 
     }
     div.calendar-#{$i} div:nth-child(#{$j})::after {
         content: "#{$j}";
